@@ -11,6 +11,16 @@
   --bttm-left-blur-2: #FFCDB1;
 }
 
+main {
+  display: flex;
+  flex-direction: column; /* Aligns children vertically. Use 'row' for horizontal alignment */
+  align-items: center; /* Horizontally centers the content in the container */
+  justify-content: center; /* Vertically centers the content in the container */
+  height: 100vh;
+  overflow: auto; /* Optional: Takes the full height of the viewport */
+}
+
+
 html {
     background: var(--color-bg);
     font-family: var(--main-family);
@@ -18,10 +28,9 @@ html {
 }
 
 #background {
-    position: fixed;
-    width: 100%;
-    z-index: -1;
-    height: 100%;
+  width: 100%;
+  height: auto;
+  display: block; 
 }
 
 #content {
