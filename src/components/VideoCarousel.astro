@@ -17,46 +17,6 @@ function slide(direction) {
 }
 ---
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
-/* ... rest of your provided CSS ... */
-.video-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 800px; /* Adjust based on your requirement */
-    overflow: hidden;
-}
-.carousel-videos {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-.carousel-video {
-    max-width: 100%;
-    display: none;
-    transition: opacity 0.5s ease;
-}
-.carousel-video.active {
-    display: block;
-}
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 100;
-}
-.carousel-button.prev {
-    left: 10px;
-}
-.carousel-button.next {
-    right: 10px;
-}
-</style>
 
 <div class="video-carousel">
     <div class="carousel-videos">

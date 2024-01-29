@@ -3,107 +3,140 @@
 :root {
   --main-family: 'Poppins', sans-serif;
   --color-bg: linear-gradient(180deg, #FFFFFF 0%, #AEC6DC 100%);
-
-  /* Controls the blob blur gradient colors within the main tag's svg */
   --top-right-blur-1: #20C6B7;
   --top-right-blur-2: #4D9ABF;
   --bttm-left-blur-1: #FF5C02;
   --bttm-left-blur-2: #FFCDB1;
 }
 
-main {
-  display: flex;
-  flex-direction: column; /* Aligns children vertically. Use 'row' for horizontal alignment */
-  align-items: center; /* Horizontally centers the content in the container */
-  justify-content: center; /* Vertically centers the content in the container */
-  height: 100vh;
-  overflow: auto; /* Optional: Takes the full height of the viewport */
+html {
+  background: #20C6B7;
+  font-family: var(--main-family);
+  min-height: 100%;
 }
 
-
-html {
-    background: var(--color-bg);
-    font-family: var(--main-family);
-    min-height: 100%;
+body {
+  background: #20C6B7;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 #background {
   width: 100%;
+  max-width: 1728px;
   height: auto;
-  display: block; 
 }
 
 #content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Set a max-width for large screens */
   margin: 0 auto;
-}
-
-.header{
-    text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .header h1 {
-  padding-top:5%;
-  margin: 0;
+  font-size: 6em;
+  font-weight: 700; /* Makes the font bold */
+  color: #FF5C02;
+  text-shadow: 15px 15px 15px #4D9ABF; /* A subtle shadow for depth */
+  margin: 20px 0; /* Adds space above and below the header */
+  padding: 10px 0; /* Adds space inside the element, above and below the text */
+  letter-spacing: 1px; /* Adds space between each letter */
+  text-align: center; /* Centers the text */
+  font-family: 'Poppins', sans-serif; /* Optional if you've already defined it globally */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1, .header h2 {
+  margin: 20px 0;
 }
 
 .header .logo img {
-  padding: 30px 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel, .video-carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.carousel-images, .carousel-videos, .carousel-image, .carousel-video {
   width: 100%;
 }
 
-.header h2 {
-  line-height: 34px;
-  width: 50%;
-  margin: 0 auto;
-  padding-bottom: 5%;
-  font-weight: 500;
+.carousel-image, .carousel-video {
+  display: none;
+  object-fit: cover; /* Ensures the images/videos cover the area without stretching */
 }
 
-@media only screen and (max-width: 450px) {
-  .header h2 {
-    width: 90%;
-    padding: 5%;
-  }
+.carousel-image.active, .carousel-video.active {
+  display: block;
 }
 
-.bttns{
-  margin-bottom: 5%;
-}
-
-.bttn{
-  padding: 15px;
-  border-radius: 5px;
-  width: 150px;
-  margin: 0 1%;
-  text-decoration: none;
-}
-
-.bttn.primary{
-  display: inline-block;
-  width: max-content;
-  background: #21A69A;
-  border: none;
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  box-shadow: -3px 3px 5px rgb(35 33 33 / 23%);
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  z-index: 100;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.bttns {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.bttn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bttn.primary {
+  background: #21A69A;
+  color: white;
+  border: 2px solid #21A69A;
 }
 
 .bttn.primary:hover {
-  background: #21a69a;
-  box-shadow: inset 3px 4px 10px rgb(35 33 33 / 40%);
-  /* -webkit-box-shadow: inset 3px 4px 10px rgb(35 33 33 / 40%); */
-}
-
-.bttn.secondary{
-  background: transparent;
-  border: #093C4F 2px solid;
-  color: #0D1D24;
+  background: #21A69A;
+  border-color: #21A69A;
 }
 
 .bttn.secondary:hover {
-  background: #05171f;
+  background: #093C4F;
   color: white;
 }
 
@@ -111,34 +144,64 @@ html {
   font-family: Helvetica, Arial, sans-serif;
   font-size: larger;
   text-align: center;
-  width: 100%;
+  margin-top: 30px;
 }
 
 .resource-list ul {
-  text-align: left;
-  margin: 0 auto;
   list-style: none;
+  padding: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  padding: 2%;
+  gap: 10px;
 }
 
 .resource-list li {
-  padding: 2%;
-  font-weight: bold;
-}
-
-.resource-list a {
-  color: black;
-  line-height: 30px;
+  padding: 10px;
 }
 
 footer {
-  margin: 0 auto;
-  width: 100%;
+  margin-top: 50px;
   text-align: center;
 }
 
 footer img {
-  width: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .header h2 {
+    width: 90%;
+    padding: 5%;
+  }
+
+  .carousel, .video-carousel {
+    max-width: 90%;
+  }
+
+  .bttns {
+    flex-direction: column;
+  }
+
+  .bttn {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  #content {
+    padding: 10px;
+  }
+
+  .header .logo img {
+    max-width: 80%;
+    margin: 0 auto; /* Centers the logo */
+  }
+
+  .resource-list ul {
+    flex-direction: column;
+  }
 }
