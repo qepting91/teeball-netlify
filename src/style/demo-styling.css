@@ -204,4 +204,17 @@ footer img {
   .resource-list ul {
     flex-direction: column;
   }
+
+  .header h1 {
+    font-size: 4em; /* Even smaller font size */
+    text-shadow: 5px 5px 5px #4D9ABF; /* Even smaller shadow */
+  }
+}
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 3em; /* Smallest font size for very small screens */
+    text-shadow: 3px 3px 3px #4D9ABF; /* Smallest shadow */
+    padding: 5px 0; /* Adjust padding */
+    margin: 10px 0; /* Adjust margin */
+  }
 }
