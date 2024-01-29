@@ -1,0 +1,90 @@
+---
+// VideoCarousel.astro
+const videos = [
+    'https://www.youtube.com/embed/y3vKN7lzDXE?si=oBcMulzRrv4US0FN',
+    'https://www.youtube.com/embed/RXZ83JeKXI4?si=3DSz-EtcsT7Daz_7',
+    'https://www.youtube.com/embed/-YDEFzeMeLU?si=mNjXz-W9QqrZiB8E',
+    'https://www.youtube.com/embed/UQ1ckleCg6w?si=EmjOkOk7IAHQ-MAY',
+    'https://www.youtube.com/embed/VGjhkL6Kcjo?si=Ysrg-TgiYniqeEQL',
+    'https://www.youtube.com/embed/XWlk9TPIrBU?si=1oHSdV9JL_b_mt8Z',
+    'https://www.youtube.com/embed/GL8OvE03Krk?si=Wuv5pwL1NAcspGNr'
+];
+
+let activeIndex = 0;
+
+function slide(direction) {
+    activeIndex = (activeIndex + direction + videos.length) % videos.length;
+}
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+/* ... rest of your provided CSS ... */
+.video-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px; /* Adjust based on your requirement */
+    overflow: hidden;
+}
+.carousel-videos {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.carousel-video {
+    max-width: 100%;
+    display: none;
+    transition: opacity 0.5s ease;
+}
+.carousel-video.active {
+    display: block;
+}
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100;
+}
+.carousel-button.prev {
+    left: 10px;
+}
+.carousel-button.next {
+    right: 10px;
+}
+</style>
+
+<div class="video-carousel">
+    <div class="carousel-videos">
+        {videos.map((src, index) => (
+            <iframe class={`carousel-video ${index === activeIndex ? 'active' : ''}`} width="560" height="315" src={src} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        ))}
+    </div>
+    <button class="carousel-button prev" onclick="slide(-1)">&#10094;</button>
+    <button class="carousel-button next" onclick="slide(1)">&#10095;</button>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const images = document.querySelectorAll('.carousel-video');
+        let activeIndex = 0;
+    
+        function showSlide(index) {
+            images.forEach(img => img.classList.remove('active'));
+            images[index].classList.add('active');
+        }
+    
+        function slide(direction) {
+            activeIndex = (activeIndex + direction + images.length) % images.length;
+            showSlide(activeIndex);
+        }
+    
+        document.querySelector('.carousel-button.prev').addEventListener('click', () => slide(-1));
+        document.querySelector('.carousel-button.next').addEventListener('click', () => slide(1));
+    });
+    </script>
